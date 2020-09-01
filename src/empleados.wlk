@@ -1,9 +1,25 @@
 object galvan {
 	var sueldo = 15000
+	var dineroTotal = 0
+	var deudaTotal = 0
 	
 	method consultarSueldo() {return sueldo}
 	method aumentarSueldo(cantidad) {sueldo = cantidad}
-	method cobrarSueldo() {gimenez.pagarSueldo(sueldo)}
+	method cobrarSueldo() {gimenez.pagarSueldo(sueldo) dineroTotal += sueldo}
+	method gastar(cuanto) {
+		if(cuanto > dineroTotal) {deudaTotal = cuanto - dineroTotal
+			                      dineroTotal = 0}
+		if(cuanto < dineroTotal) {dineroTotal -= cuanto}	                      
+	}
+	method deuda() {return deudaTotal}
+	method dinero() {return dineroTotal}
+	method pagarDeudas() {
+		if(deudaTotal > dineroTotal) {deudaTotal = deudaTotal - dineroTotal
+			                          dineroTotal = 0}
+		if(deudaTotal < dineroTotal) {dineroTotal = dineroTotal - deudaTotal
+			                          deudaTotal = 0}
+    }
+	
 }
 
 object baigorria {
