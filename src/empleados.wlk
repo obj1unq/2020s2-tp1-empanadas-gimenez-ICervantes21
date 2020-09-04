@@ -5,7 +5,7 @@ object galvan {
 	
 	method consultarSueldo() {return sueldo}
 	method aumentarSueldo(cantidad) {sueldo = cantidad}
-	method cobrarSueldo() {gimenez.pagarSueldo(sueldo) dineroTotal += sueldo}
+	method cobrarSueldo() {dineroTotal += sueldo}
 	method gastar(cuanto) {
 		if(cuanto > dineroTotal) {deudaTotal = cuanto - dineroTotal
 			                      dineroTotal = 0}
@@ -25,15 +25,15 @@ object galvan {
 object baigorria {
 	var empanadasVendidas = 0
 	const sueldoBase = 15
-	var sueldoPorVentas 
+	var sueldo 
 	var fondoCobrado
 	
 	method venderEmpanadas(cantidad) {empanadasVendidas += cantidad self.calcularSueldo()}
-	method calcularSueldo() {sueldoPorVentas = sueldoBase * empanadasVendidas}
-	method cobrarSueldo() {gimenez.pagarSueldo(sueldoPorVentas)}
-	method consultarSueldo() {return sueldoPorVentas}
+	method calcularSueldo() {sueldo = sueldoBase * empanadasVendidas}
+	method cobrarSueldo() {fondoCobrado = sueldo}
+	method consultarSueldo() {return sueldo}
 	method nuevoMes() {empanadasVendidas = 0}
-	method finDelMes() {fondoCobrado = sueldoPorVentas self.nuevoMes() self.calcularSueldo()}
+	method finDelMes() {self.nuevoMes() self.calcularSueldo()}
 	method totalCobrado() {return fondoCobrado}
 }
 
@@ -41,6 +41,6 @@ object gimenez {
 	var fondoParaSueldos = 300000
 	
 	method consultarFondo() {return fondoParaSueldos}
-	method pagarSueldo(cantidad) {fondoParaSueldos -= cantidad}
+	method pagarSueldo(empleado) {empleado.cobrarSueldo() fondoParaSueldos -= empleado.consultarSueldo()}
 	
 }
