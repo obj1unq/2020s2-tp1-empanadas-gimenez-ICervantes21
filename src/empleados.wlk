@@ -5,9 +5,11 @@ object galvan {
 	
 	method consultarSueldo() {return sueldo}
 	method aumentarSueldo(cantidad) {sueldo = cantidad}
-	method cobrarSueldo() {dineroTotal += sueldo}
+	method cobrarSueldo() {dineroTotal += sueldo 
+		self.pagarDeudas()
+	}
 	method gastar(cuanto) {
-		if(cuanto > dineroTotal) {deudaTotal = cuanto - dineroTotal
+		if(cuanto > dineroTotal) {deudaTotal += (cuanto - dineroTotal)
 			                      dineroTotal = 0}
 		if(cuanto < dineroTotal) {dineroTotal -= cuanto}	                      
 	}

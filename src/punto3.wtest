@@ -4,7 +4,7 @@ test "punto1: Finanzas de  galvan" {
 
    assert.equals(0, galvan.deuda()) 	
    assert.equals(0, galvan.dinero()) 	
-   assert.equals(15000, galvan.sueldo()) 	
+   assert.equals(15000, galvan.consultarSueldo()) 	
 
    galvan.gastar(4000)
    assert.equals(4000, galvan.deuda()) 	
